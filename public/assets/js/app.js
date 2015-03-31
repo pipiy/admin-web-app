@@ -1,7 +1,7 @@
 window.app = angular.module("adminApp", ['ui.bootstrap', 'ngAnimate', 'angularUUID2', 'ui.router', 'ngRoute']);
 
 // configure our routes
-app.config(function($stateProvider, $urlRouterProvider){
+app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
 	$urlRouterProvider.otherwise('/');
 
 	$stateProvider
