@@ -6,7 +6,7 @@ app.config(function($stateProvider, $urlRouterProvider){
 	$stateProvider
 
 	.state('/', {
-    url:          '/'
+    url:          '/',
 		templateUrl:  'login.html',
 		controller: 	'loginCtrl'
 	})
