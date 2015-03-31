@@ -1,4 +1,5 @@
-var app = angular.module("adminApp", ['ui.bootstrap', 'ngAnimate', 'angularUUID2', 'ngRoute', 'ui.router']);
+window.app = angular.module("adminApp", ['ui.bootstrap', 'ngAnimate', 'angularUUID2', 'ui.router', 'ngRoute']);
+
 // configure our routes
 app.config(function($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise('/');
@@ -6,7 +7,6 @@ app.config(function($stateProvider, $urlRouterProvider){
 	$stateProvider
 
 	.state('/', {
-    url:          '/',
 		templateUrl:  'login.html',
 		controller: 	'loginCtrl'
 	})
