@@ -1,0 +1,36 @@
+<!-- Page title start -->
+<div class="page-title boxes">
+  <h2>
+    Table of Boxes
+    <small>
+      
+    </small>
+  </h2>
+  <div class="right">
+    <div class="form-group">
+    	<input type="text" class="form-control" ng-model="search" ng-change="filter()" placeholder="Search"/>
+    </div>
+  </div>
+</div>
+<!-- Page title end -->
+
+<!-- Row start -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="widget">
+      <div class="widget-body">
+        <div class="list-group todo-item" ng-repeat="box in filtered = (boxes | filter:search) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+		      <div class="list-group-item">
+	          <span>{{box.name}}</span>
+	          <div class="actions">
+							<a class="btn btn-danger btn-xs" href="#" tooltip="Revoke" ng-click="openRevokeForm ('sm')">
+								Revoke
+							</a>
+						</div>
+		      </div>
+		    </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Row end -->

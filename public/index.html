@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Admin</title>
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/docs.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/animate.min.css">
+		<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+    <base href="/">
+	</head>
+	<body ng-app="adminApp" ng-controller="indexCtrl">
+	  <!-- Header start -->
+    <header>
+
+      <!-- Logo -->
+      <div class="logo">
+        R<span>cam</span>
+      </div>
+    </header>
+    <!-- Header end -->
+
+    <!-- Main Container start -->
+    <div class="main-container">
+      <!-- Mian navigation start -->
+      <div id="mainnav" >
+        
+        <!-- User pic start -->
+        <div class="user-profile-pic">
+          <img src="assets/images/avatar-1.png">
+        </div>
+        <!-- User pic end -->
+
+        <ul class="slick-menu">
+          <li ng-class="{active:isActive('/dashboard')}">
+            <span class="current-arrow" ng-show="isActive('/dashboard')">&nbsp;</span>
+            <a href="/dashboard">
+              <div class="icon">
+                <i class="fs1 fa fa-tachometer fa-2x"></i>
+              </div>
+              Dashboard
+            </a>
+          </li>
+          <li ng-class="{active:isActive('/users')}">
+            <span class="current-arrow" ng-show="isActive('/users')">&nbsp;</span>
+            <a href="/users">
+              <div class="icon">
+                <i class="fs1 fa fa-users fa-2x"></i>
+              </div>
+              Users
+            </a>
+          </li>
+          <li ng-class="{active:isActive('/boxes')}">
+            <span class="current-arrow" ng-show="isActive('/boxes')">&nbsp;</span>
+            <a href="/boxes">
+              <div class="icon">
+                <i class="fs1 fa fa-video-camera fa-2x"></i>
+              </div>
+              Boxes
+            </a>
+          </li>
+          
+          <li>
+            <a href="login.html">
+              <div class="icon">
+                <i class="fs1 fa fa-unlock-alt fa-2x"></i>
+              </div>
+              Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Dashboard wrapper start -->
+      <div class="dashboard-wrapper">
+        <div ng-view></div>
+      </div>
+      <!-- Dashboard wrapper end -->
+    </div>
+	  <!-- Scripts -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular-animate.js"></script>
+    <script type="text/javascript" src="assets/js/app.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/indexctrl.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/loginctrl.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/dashboardctrl.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/userctrl.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/boxesctrl.js"></script>
+    <script type="text/javascript" src="assets/js/filters/startFormFilter.js"></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.3.1/lodash.min.js'></script>
+    <script type="text/javascript" src="assets/js/angular-uuid.js"></script>
+
+    <script type="text/ng-template" id="modalContent.html">
+      <div>
+        <div class="modal-header">
+          <a type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+          <h3 class="modal-title">Edit User</h3>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="userEmail">Email</label>
+            <input type="email" id="userEmail" class="form-control" ng-model="currentUser.email">
+          </div>
+          <div class="form-group">
+            <label for="userName">Password</label>
+            <input type="text" class="form-control" id="userPass" ng-model="currentUser.password">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a ng-click="save_user()" class="btn btn-primary btn-sm" title="Save" ng-disabled="!currentUser.email && !currentUser.password">Edit</a>
+          <a class="btn btn-danger" ng-click="close()" tooltip="Cancel">Cancel</a>     
+        </div>
+      </div>
+    </script>
+    <script type="text/ng-template" id="modalForm.html">
+      <div>
+        <div class="modal-header">
+        <a type="button" class="close" ng-click="cancel()" aria-label="Close" tooltip="Close" ><span aria-hidden="true">&times;</span></a>
+          <h3 class="modal-title">Adding New User</h3>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <input type="email" class="form-control" ng-model="userEmail" placeholder="User Email" required>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-10">
+                <input type="text" class="form-control" ng-model="userPass" ng-disabled="userPass.length == 10" placeholder="User Password" required>
+              </div>
+              <div class="col-md-2">
+                <a ng-click="getPass()" class="btn btn-default btn-sm" tooltip-placement="left" tooltip="Generate Password"><i class="fa fa-refresh"></i></a>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <p class="center">Permissions:</p>
+          <hr>
+          {{userCheckbox}}
+          <p class="center">Box 1</p>
+          <div class="form-inline">
+            <div class="checkboxes" style="text-align: center">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="userCheckbox.box1.cam1"> Cam 1
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="userCheckbox.box1.cam2"> Cam 2
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="userCheckbox.box1.cam3"> Cam 3
+                </label>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <p class="center">Box 2</p>
+          <div class="form-inline">
+            <div class="checkboxes" style="text-align: center">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="userCheckbox.box2.cam1"> Cam 1
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="userCheckbox.box2.cam2"> Cam 2
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="userCheckbox.box2.cam3"> Cam 3
+                </label>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <p class="center">Box 3</p>
+          <div class="form-inline">
+            <div class="checkboxes" style="text-align: center">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="userCheckbox.box3.cam1"> Cam 1
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="userCheckbox.box3.cam2"> Cam 2
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="userCheckbox.box3.cam3"> Cam 3
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a ng-click="ok()" class="btn btn-primary btn-sm" title="Add New User" ng-disabled="!userEmail || !userPass">Add</a> 
+          <a class="btn btn-danger" ng-click="cancel()" tooltip="Cancel">Cancel</a>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/ng-template" id="boxesModal.html">
+      <div>
+        <div class="modal-header">
+          <a type="button" class="close" ng-click="cancel()" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+          <h3 class="modal-title">Warning!</h3>
+        </div>
+        <div class="modal-body">
+          <p style="text-align: center">Are you sure?<br />You want to revoke this Box?</p>
+        </div>
+        <div class="modal-footer">
+          <a ng-click="revoke()" class="btn btn-primary btn-sm" title="Revoke">Revoke</a>
+          <a class="btn btn-danger" ng-click="cancel()" tooltip="Cancel">Cancel</a>     
+        </div>
+      </div>
+    </script>
+	</body>
+</html>

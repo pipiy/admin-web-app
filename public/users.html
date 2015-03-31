@@ -1,0 +1,59 @@
+<!-- Page title start -->
+<div class="page-title">
+  <h2>
+    Users
+    <small>
+      
+    </small>
+  </h2>
+  <div class="left">
+  	<a href="#" class="btn blue-btn center btn-lg" tooltip="Add new user" ng-click="openForm('sm')">
+  	Add User 
+  	</a>
+  </div>
+  <div class="right">
+    <div class="form-group">
+    	<input type="text" class="form-control" ng-model="search" ng-change="filter()" placeholder="Search"/>
+    </div>
+  </div>
+</div>
+<!-- Page title end -->
+
+<!-- Row start -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="widget users_table">
+      <div class="widget-body">
+        <div id="">
+          <table class="table table-condensed table-striped table-hover table-bordered pull-left" >    
+            <thead>
+              <tr>
+                <th style="width:15%">User</th>
+                <th style="width:15%; text-align: right">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="user in filtered = (users | filter:search) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit" class="todo-item">
+                <td class="text-padding">{{user.email}}</td>
+                <td class="center">
+                	<div class="actions">
+										<a class="btn btn-info" href="#" ng-click="openEditForm(user, 'sm')" >
+											Edit
+										</a>
+										<a class="btn btn-danger" href="#" ng-click="removeUser(user)">
+											Delete 
+										</a>
+									</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination total-items='users.length' ng-model='currentPage' items-per-page='entryLimit' max-size="5" data-previous-text="&laquo;" data-next-text="&raquo;">
+					</pagination>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Row end -->
