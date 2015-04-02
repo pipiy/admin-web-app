@@ -33,5 +33,5 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
 		controller: 	'boxesApp'
 	})
 
-  $locationProvider.html5Mode(true);
+  /*$locationProvider.html5Mode(true);*/
 });
