@@ -65,7 +65,7 @@ header .logo span {
   background: white;
   border: 1px solid #ededed;
 }
-.widget-body {
+.widget-body.chart {
   height: 400px;
 }
 .center {

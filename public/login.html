@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>Login </title>
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/vendors/css/bootstrap.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
   </head>
 
-  <body>
+  <body ng-app="adminApp">
     
     <!-- Main Container start -->
     <div class="main-container">
@@ -34,7 +34,7 @@
             </div>
           </div>
           <div class="login-actions">
-            <a href="/dashboard" class="btn btn-danger">Login</a>
+            <a ui-sref="dashboard" class="btn btn-danger">Login</a>
             <div class="clearfix"></div>
           </div>
         </form>

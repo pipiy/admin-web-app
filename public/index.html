@@ -36,7 +36,7 @@
         <ul class="slick-menu">
           <li ng-class="{active:isActive('/dashboard')}">
             <span class="current-arrow" ng-show="isActive('/dashboard')">&nbsp;</span>
-            <a href="/dashboard">
+            <a ui-sref="dashboard">
               <div class="icon">
                 <i class="fs1 fa fa-tachometer fa-2x"></i>
               </div>
@@ -45,7 +45,7 @@
           </li>
           <li ng-class="{active:isActive('/users')}">
             <span class="current-arrow" ng-show="isActive('/users')">&nbsp;</span>
-            <a href="/users">
+            <a ui-sref="users">
               <div class="icon">
                 <i class="fs1 fa fa-users fa-2x"></i>
               </div>
@@ -54,7 +54,7 @@
           </li>
           <li ng-class="{active:isActive('/boxes')}">
             <span class="current-arrow" ng-show="isActive('/boxes')">&nbsp;</span>
-            <a href="/boxes">
+            <a ui-sref="boxes">
               <div class="icon">
                 <i class="fs1 fa fa-video-camera fa-2x"></i>
               </div>
@@ -75,13 +75,12 @@
 
       <!-- Dashboard wrapper start -->
       <div class="dashboard-wrapper">
-        <div ng-view></div>
+        <div ui-view></div>
       </div>
       <!-- Dashboard wrapper end -->
     </div>
 	  <!-- Scripts -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
     <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular-animate.js"></script>
