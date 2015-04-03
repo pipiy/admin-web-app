@@ -1,45 +1,28 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Login </title>
-    <link href="assets/vendors/css/bootstrap.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-  </head>
-
-  <body ng-app="adminApp">
-    
-    <!-- Main Container start -->
-    <div class="main-container">
+<div class="row">
+  <form action="#" class="login-wrapper" method="post">
+    <div class="header">
       <div class="row">
-        <form action="#" class="login-wrapper" method="post">
-          <div class="header">
-            <div class="row">
-              <div class="col-md-12">
-                <h3>Rcam Backend</h3>
-                <p>Fill out the form below to login.</p>
-              </div>
-            </div>
-          </div>
-          <div class="content">
-            <div class="row">
-              <div class="col-md-12 col-sm-12">
-                <input class="input col-md-12 col-sm-12 email" id="" name="" placeholder="example@maill.com" type="email" value="" required>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 col-sm-12">
-                <input class="input col-md-12 col-sm-12 password" id="" name="" placeholder="********" type="password" required>
-              </div>
-            </div>
-          </div>
-          <div class="login-actions">
-            <a ui-sref="dashboard" class="btn btn-danger">Login</a>
-            <div class="clearfix"></div>
-          </div>
-        </form>
+        <div class="col-md-12">
+          <h3>Rcam Backend</h3>
+          <p>Fill out the form below to login.</p>
+        </div>
       </div>
     </div>
-    <!-- Main Container end -->
-  </body>
-</html>
+    <div class="content">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <input class="input col-md-12 col-sm-12 email" id="" name="" placeholder="example@maill.com" type="email" value="" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <input class="input col-md-12 col-sm-12 password" id="" name="" placeholder="********" type="password" required>
+        </div>
+      </div>
+    </div>
+    <div class="login-actions">
+      <a ui-sref="dashboard" class="btn btn-danger">Login</a>
+      <div class="clearfix"></div>
+    </div>
+  </form>
+</div>

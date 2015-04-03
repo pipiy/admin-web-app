@@ -4,7 +4,7 @@
 		<title>Admin</title>
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 		<link rel="stylesheet" type="text/css" href="assets/vendors/css/bootstrap.css">
-		<link rel="stylesheet" type="text/css" href="assets/vendors/css/docs.min.css">
+		<!--<link rel="stylesheet" type="text/css" href="assets/vendors/css/docs.min.css">-->
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 		<link rel="stylesheet" type="text/css" href="assets/vendors/css/animate.min.css">
 		<link rel="stylesheet" href="assets/css/font-awesome.min.css">
@@ -16,7 +16,7 @@
     <header>
 
       <!-- Logo -->
-      <div class="logo">
+      <div class="logo" ng-hide="isActive('/login')">
         R<span>cam</span>
       </div>
     </header>
@@ -24,57 +24,61 @@
 
     <!-- Main Container start -->
     <div class="main-container">
-      <!-- Mian navigation start -->
-      <div id="mainnav" >
-        
-        <!-- User pic start -->
-        <div class="user-profile-pic">
-          <img src="assets/images/avatar-1.png">
-        </div>
-        <!-- User pic end -->
-
-        <ul class="slick-menu">
-          <li ng-class="{active:isActive('/dashboard')}">
-            <span class="current-arrow" ng-show="isActive('/dashboard')">&nbsp;</span>
-            <a ui-sref="dashboard">
-              <div class="icon">
-                <i class="fs1 fa fa-tachometer fa-2x"></i>
-              </div>
-              Dashboard
-            </a>
-          </li>
-          <li ng-class="{active:isActive('/users')}">
-            <span class="current-arrow" ng-show="isActive('/users')">&nbsp;</span>
-            <a ui-sref="users">
-              <div class="icon">
-                <i class="fs1 fa fa-users fa-2x"></i>
-              </div>
-              Users
-            </a>
-          </li>
-          <li ng-class="{active:isActive('/boxes')}">
-            <span class="current-arrow" ng-show="isActive('/boxes')">&nbsp;</span>
-            <a ui-sref="boxes">
-              <div class="icon">
-                <i class="fs1 fa fa-video-camera fa-2x"></i>
-              </div>
-              Boxes
-            </a>
-          </li>
+      <div ng-hide="isActive('/login')">
+        <!-- Mian navigation start -->
+        <div id="mainnav" >
           
-          <li>
-            <a ui-sref="login">
-              <div class="icon">
-                <i class="fs1 fa fa-unlock-alt fa-2x"></i>
-              </div>
-              Logout
-            </a>
-          </li>
-        </ul>
-      </div>
+          <!-- User pic start -->
+          <div class="user-profile-pic">
+            <img src="assets/images/avatar-1.png">
+          </div>
+          <!-- User pic end -->
 
+          <ul class="slick-menu">
+            <li ng-class="{active:isActive('/dashboard')}">
+              <span class="current-arrow" ng-show="isActive('/dashboard')">&nbsp;</span>
+              <a ui-sref="dashboard">
+                <div class="icon">
+                  <i class="fs1 fa fa-tachometer fa-2x"></i>
+                </div>
+                Dashboard
+              </a>
+            </li>
+            <li ng-class="{active:isActive('/users')}">
+              <span class="current-arrow" ng-show="isActive('/users')">&nbsp;</span>
+              <a ui-sref="users">
+                <div class="icon">
+                  <i class="fs1 fa fa-users fa-2x"></i>
+                </div>
+                Users
+              </a>
+            </li>
+            <li ng-class="{active:isActive('/boxes')}">
+              <span class="current-arrow" ng-show="isActive('/boxes')">&nbsp;</span>
+              <a ui-sref="boxes">
+                <div class="icon">
+                  <i class="fs1 fa fa-video-camera fa-2x"></i>
+                </div>
+                Boxes
+              </a>
+            </li>
+            
+            <li>
+              <a ui-sref="login">
+                <div class="icon">
+                  <i class="fs1 fa fa-unlock-alt fa-2x"></i>
+                </div>
+                Logout
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div ng-show="isActive('/login')">
+        <div ui-view></div>
+      </div>
       <!-- Dashboard wrapper start -->
-      <div class="dashboard-wrapper">
+      <div class="dashboard-wrapper" ng-hide="isActive('/login')">
         <div ui-view></div>
       </div>
       <!-- Dashboard wrapper end -->
