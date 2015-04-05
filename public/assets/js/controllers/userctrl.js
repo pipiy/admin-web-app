@@ -1,13 +1,13 @@
 app.factory('UsersSharedObjects', function() {
 	return {
-		generateUserModal: 	null,
-		editedUserForm: 		null
+        generateUserModal: null,
+        editedUserForm:    null
 	};
 });
 
 
 app.controller("usersApp", [
-	"$scope", "$modal", "uuid2", "UsersSharedObjects", 'BoxesService'
+	"$scope", "$modal", "uuid2", "UsersSharedObjects", 'BoxesService',
 	function($scope, $modal, uuid2, UsersSharedObjects, BoxesService){
 
 	$scope.boxes = BoxesService.all();

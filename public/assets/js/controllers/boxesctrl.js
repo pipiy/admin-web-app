@@ -36,14 +36,14 @@ app.controller("boxesApp", ["$scope", "$modal", "uuid2", "BoxesSharedObjects", '
 		BoxesSharedObjects.boxesModal.dismiss('cancel')
 	}
 
-	$scope.boxes = BoxesService.all()
+	$scope.boxes = BoxesService.all();
 
 	$scope.currentPage = 1;
   $scope.maxSize = 5;
   $scope.entryLimit = 8;
 
   $scope.noOfPages = Math.ceil($scope.boxes.length/$scope.entryLimit);
-  
+
   $scope.filter = function() {
     window.setTimeout(function() {
       $scope.noOfPages = Math.ceil($scope.filtered.length/$scope.entryLimit);
