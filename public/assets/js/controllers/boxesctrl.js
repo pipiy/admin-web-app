@@ -4,7 +4,24 @@ app.factory('BoxesSharedObjects', function() {
 	};
 });
 
-app.controller("boxesApp", ["$scope", "$modal", "uuid2", "BoxesSharedObjects", function($scope, $modal, uuid2, BoxesSharedObjects){
+app.service('BoxesService', function() {
+
+	return {
+		all: function() {
+			return [{
+				name: "Box 1"
+			},{
+				name: "Box 2"
+			},{
+				name: "Box 3"
+			}];
+		}
+	};
+
+});
+
+app.controller("boxesApp", ["$scope", "$modal", "uuid2", "BoxesSharedObjects", 'BoxesService',
+	function($scope, $modal, uuid2, BoxesSharedObjects, BoxesService){
 	$scope.openRevokeForm = function(size) {
 		BoxesSharedObjects.boxesModal = $modal.open({
       templateUrl: 'boxesModal.html',
@@ -19,13 +36,7 @@ app.controller("boxesApp", ["$scope", "$modal", "uuid2", "BoxesSharedObjects", f
 		BoxesSharedObjects.boxesModal.dismiss('cancel')
 	}
 
-	$scope.boxes = [{
-		name: "Box 1"
-	},{
-		name: "Box 2"
-	},{
-		name: "Box 3"
-	}]
+	$scope.boxes = BoxesService.all()
 
 	$scope.currentPage = 1;
   $scope.maxSize = 5;

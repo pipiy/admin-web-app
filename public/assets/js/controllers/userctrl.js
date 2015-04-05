@@ -7,8 +7,10 @@ app.factory('UsersSharedObjects', function() {
 
 
 app.controller("usersApp", [
-	"$scope", "$modal", "uuid2", "UsersSharedObjects",
-	function($scope, $modal, uuid2, UsersSharedObjects){
+	"$scope", "$modal", "uuid2", "UsersSharedObjects", 'BoxesService'
+	function($scope, $modal, uuid2, UsersSharedObjects, BoxesService){
+
+	$scope.boxes = BoxesService.all();
 
 	var User = function(attributes) {
 		attributes = attributes || {};
